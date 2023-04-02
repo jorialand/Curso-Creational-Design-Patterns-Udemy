@@ -2,15 +2,13 @@
 
 void OpenConnection()
 {
-	//Logger& log = Logger::Instance();
-	Logger log;
+	Logger& log = Logger::Instance();
 	log.WriteLog("OpenConnection");
 
 }
 int main()
 {
-	//Logger& log = Logger::Instance();
-	Logger log;
+	Logger& log = Logger::Instance();
 	log.SetTag("INFO");
 	log.WriteLog("App started.");
 	OpenConnection();

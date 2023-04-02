@@ -1,8 +1,10 @@
-#include "Singleton.h"
+#include "Logger.h"
+
 
 int main()
 {
-	//Singleton singleton = Singleton(); // Ctor is private
-	Singleton& s = Singleton::Instance();
-	s.MethodA();
+	Logger& log = Logger::Instance();
+	log.SetTag("INFO");
+	log.WriteLog("App started.");
+	log.WriteLog("App shutting down.");
 }

@@ -6,7 +6,7 @@
 class Logger
 {
 	Logger();
-	static Logger m_Instance;
+	static Logger* m_Instance;
 
 	FILE* m_pStream;
 	std::string m_Tag;

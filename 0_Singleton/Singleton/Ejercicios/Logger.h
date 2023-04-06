@@ -6,17 +6,9 @@
  
 class Logger
 {
-	struct Deleter
-	{
-		void operator()(Logger* p)
-		{
-			delete p;
-		}
-	};
-
 	Logger();
 	// c++17 inline static initialization
-	inline static std::unique_ptr<Logger, Deleter> m_pInstance{};
+	inline static Logger* m_pInstance {};
 
 	FILE* m_pStream;
 	std::string m_Tag;

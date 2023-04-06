@@ -14,8 +14,4 @@ int main()
 	log.WriteLog("App started.");
 	OpenConnection();
 	log.WriteLog("App shutting down.");
-
-	// What if user creates a ptr and deletes it?
-	//auto pLog = &log;
-	//delete pLog;
 }

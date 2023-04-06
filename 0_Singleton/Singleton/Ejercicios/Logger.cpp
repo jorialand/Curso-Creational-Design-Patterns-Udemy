@@ -7,6 +7,8 @@ Logger::Logger()
 {
 	std::cout << __FUNCSIG__ << std::endl;
 	m_pStream = fopen("logger.log", "w");
+
+	atexit([](){delete m_pInstance;});
 }
 
 Logger::~Logger()
@@ -18,7 +20,7 @@ Logger::~Logger()
 Logger& Logger::Instance()
 {
 	if (nullptr == m_pInstance)
-		m_pInstance.reset(new Logger());
+		m_pInstance = new Logger();
 	return *m_pInstance;
 }
 

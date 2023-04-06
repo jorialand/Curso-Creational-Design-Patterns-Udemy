@@ -2,11 +2,13 @@
 
 #include <cstdio>
 #include <string>
-
+#include <memory>
+ 
 class Logger
 {
 	Logger();
-	static Logger* m_Instance;
+	// c++17 inline static initialization
+	inline static std::unique_ptr<Logger> m_pInstance{};
 
 	FILE* m_pStream;
 	std::string m_Tag;

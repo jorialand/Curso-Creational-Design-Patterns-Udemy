@@ -3,8 +3,6 @@
 #include "Logger.h"
 #include <iostream>
 
-Logger* Logger::m_Instance;
-
 Logger::Logger()
 {
 	std::cout << __FUNCSIG__ << std::endl;
@@ -19,11 +17,10 @@ Logger::~Logger()
 
 Logger& Logger::Instance()
 {
-	if (nullptr == m_Instance)
-		m_Instance = new Logger();
-	return *m_Instance;
+	if (nullptr == m_pInstance)
+		m_pInstance.reset(new Logger());
+	return *m_pInstance;
 }
-
 
 void Logger::WriteLog(const char* sMsg)
 {

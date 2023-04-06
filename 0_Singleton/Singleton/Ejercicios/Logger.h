@@ -6,18 +6,26 @@
  
 class Logger
 {
+	struct Deleter
+	{
+		void operator()(Logger* p)
+		{
+			delete p;
+		}
+	};
+
 	Logger();
 	// c++17 inline static initialization
-	inline static std::unique_ptr<Logger> m_pInstance{};
+	inline static std::unique_ptr<Logger, Deleter> m_pInstance{};
 
 	FILE* m_pStream;
 	std::string m_Tag;
 
+	~Logger();
 public:
 	// Rule of three
 	Logger(const Logger&) = delete;
 	Logger& operator=(const Logger&) = delete;
-	~Logger();
 
 	static Logger& Instance();
 

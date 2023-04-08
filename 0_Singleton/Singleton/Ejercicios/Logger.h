@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <string>
 #include <memory>
+#include <mutex>
  
 class Logger
 {
@@ -12,7 +13,7 @@ class Logger
 
 	FILE* m_pStream;
 	std::string m_Tag;
-
+	inline static std::mutex m_mutex {};
 	~Logger();
 public:
 	// Rule of three

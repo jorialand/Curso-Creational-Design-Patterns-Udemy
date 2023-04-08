@@ -1,0 +1,4 @@
+-- Entonces, no puedo destruir un Singleton que sea usado en objetos globales o 
+estáticos?
+
+--

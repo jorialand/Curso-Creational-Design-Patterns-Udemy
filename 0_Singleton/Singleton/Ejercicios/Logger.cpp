@@ -19,11 +19,14 @@ Logger::~Logger()
 
 Logger& Logger::Instance()
 {
-	m_mutex.lock();
+	// DCLP - Double Checking Locking Pattern
 	if (nullptr == m_pInstance)
-		m_pInstance = new Logger();
-	m_mutex.unlock();
-
+	{
+		m_mutex.lock();
+		if (nullptr == m_pInstance)
+			m_pInstance = new Logger();
+		m_mutex.unlock();
+	}
 	return *m_pInstance;
 }
 

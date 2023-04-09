@@ -1,4 +1,5 @@
 -- Entonces, no puedo destruir un Singleton que sea usado en objetos globales o 
 estáticos?
 
---
+-- ¿Qué dice en el video de std::call_once? Que hay que usar call_once para 'One-
+-Time initializations? ¿Qué es eso?

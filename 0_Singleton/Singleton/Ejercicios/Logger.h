@@ -4,10 +4,12 @@
 #include <string>
 #include <memory>
 #include <mutex>
+#include "BaseSingleton.h"
  
-class Logger
+class Logger : public BaseSingleton<Logger>
 {
 	Logger();
+	friend class BaseSingleton<Logger>;
 	// c++17 inline static initialization
 	inline static Logger* m_pInstance {};
 
@@ -16,12 +18,6 @@ class Logger
 	inline static std::mutex m_mutex {};
 	~Logger();
 public:
-	// Rule of three
-	Logger(const Logger&) = delete;
-	Logger& operator=(const Logger&) = delete;
-
-	static Logger& Instance();
-
 	void WriteLog(const char*);
 	void SetTag(const char*);
 };

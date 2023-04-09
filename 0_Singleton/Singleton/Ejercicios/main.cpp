@@ -2,6 +2,22 @@
 #include <iostream>
 #include <thread>
 #include <mutex>
+#include "BaseSingleton.h"
+
+/*
+	CRTP Curiosity Recurring Template Pattern - Multiple Singletons using a 
+	BaseSingleton class.
+*/
+class StudyManager : public BaseSingleton<StudyManager>
+{
+//private:
+//StudyManager() = default;
+//friend class BaseSingleton<StudyManager>;
+MAKE_SINGLETON(StudyManager);
+public:
+void methA() { 	std::cout << __FUNCSIG__ << std::endl; };
+void methB() { 	std::cout << __FUNCSIG__ << std::endl; };
+};
 
 void OpenConnection()
 {
@@ -11,6 +27,12 @@ void OpenConnection()
 }
 int main()
 {
+	// CRTP
+	StudyManager& sm = StudyManager::Instance();
+	sm.methA();
+	sm.methB();
+	//auto sm2 = sm;
+
 	std::thread t1 {
 		[](){
 		Logger& log = Logger::Instance();

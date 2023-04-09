@@ -17,13 +17,6 @@ Logger::~Logger()
 	fclose(m_pStream);
 }
 
-std::once_flag flag;
-Logger& Logger::Instance()
-{
-	std::call_once(flag, [](){m_pInstance = new Logger();});
-	return *m_pInstance;
-}
-
 void Logger::WriteLog(const char* sMsg)
 {
 	fprintf(m_pStream, "[%s] %s\n", m_Tag.c_str(), sMsg);

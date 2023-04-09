@@ -17,10 +17,11 @@ Logger::~Logger()
 	fclose(m_pStream);
 }
 
+std::once_flag flag;
 Logger& Logger::Instance()
 {
-	static Logger m_pInstance;
-	return m_pInstance;
+	std::call_once(flag, [](){m_pInstance = new Logger();});
+	return *m_pInstance;
 }
 
 void Logger::WriteLog(const char* sMsg)
